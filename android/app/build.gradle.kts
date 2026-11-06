@@ -1,13 +1,15 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application")    
+    id("kotlin-android")
+    id("com.google.gms.google-services") // <--- Tambahkan baris ini   
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    namespace = "com.example.kibar_app"
+    namespace = "com.smt5.kibar_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "30.0.16248370"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -16,7 +18,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.kibar_app"
+        applicationId = "com.smt5.kibar_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -46,4 +48,13 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+// <--- 2. POSISI DEPENDENCIES (DI PALING BAWAH FILE)
+dependencies {
+    // Import Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
+
+    // SDK Firebase yang ingin digunakan
+    implementation("com.google.firebase:firebase-analytics")
 }
